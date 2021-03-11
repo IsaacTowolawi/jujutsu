@@ -1,0 +1,69 @@
+@font-face {
+  font-family: Gotham-Black sans-serif;
+  src: url(/gotham-font/GothamBook.ttf);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Gotham-Black, sans-serif;
+}
+
+li,
+a,
+button {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 19px;
+  font-weight: bold;
+  color: white;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.1);
+  background-image: url(https://images.alphacoders.com/113/1136056.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 150px;
+}
+
+.jujutsu {
+  color: white;
+  cursor: pointer;
+}
+
+.nav-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-area {
+  list-style: none;
+}
+
+.nav-area li {
+  display: inline-block;
+  padding: 3px 20px;
+}
+
+.nav-area li a {
+  transition: all 0.3s ease 0;
+}
+.nav-area li a:hover {
+  font-size: 21px;
+  padding: 9px;
+  background-color: transparent;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  transform: scale(1.3);
+}

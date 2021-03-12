@@ -1,3 +1,5 @@
+//
+
 let  carts = document.querySelectorAll('.add-cart');
 
 let manga = [
@@ -76,8 +78,16 @@ let manga = [
 
 for (let i=0; i < carts.length; i++){
     carts[i].addEventListener('click', () => {
-        cartNumbers(manga[i]);
+        cartNumbers(manga[i])
+        totalCost(manga[i])
     })
+}
+
+function onLoadCartNumbers(){
+    let mangaNumbers=localStorage.getItem('cartNumbers');
+    if (mangaNumbers) {
+        document.querySelector('.cart span').textContent=mangaNumbers;
+    }
 }
 
 function cartNumbers(manga){
@@ -99,23 +109,36 @@ function cartNumbers(manga){
 }
 
 function setItem(manga){
-    console.log("Inside of Set Items")
-    console.log("Your Manga" , manga, "is ready for delivery")
-    manga.inStore = 1
-
-
+    let mangaItems = localStorage.getItem("mangaInStore")
+    mangaItems = JSON.parse(mangaItems)
+    
+    
+    if (mangaItems != null){
+        
+        if(mangaItems[manga.tag] == undefined) {
+            mangaItems = {
+            ...mangaItems,
+            [manga.tag]: manga
+            }
+         
+    }
+    mangaItems[manga.tag].inStore += 1;
+    } 
+    else    {
+        manga.inStore = 1
     let mangaItems = {
-        [manga.tag]: manga
+            [manga.tag]: manga
+        }
     }
-
+    
     manga.inStore = 1
-    localStorage.setItem("mangasIncart", JSON.stringify (mangaItems))
+    localStorage.setItem("mangasInStore", JSON.stringify (mangaItems))
 }
 
-function onLoadCartNumbers(){
-    let mangaNumbers=localStorage.getItem('cartNumbers');
-    if (mangaNumbers) {
-        document.querySelector('.cart span').textContent=mangaNumbers;
-    }
+function totalCost(manga){
+    console.log("The total amount", manga.price + manga.price)
+    localStorage.setItem("totalCost", manga.price + manga.price)
 }
+
+
 onLoadCartNumbers();
